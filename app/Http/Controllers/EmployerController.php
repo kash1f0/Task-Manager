@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employer;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Task;
 
 class EmployerController extends Controller
 {
@@ -15,7 +18,7 @@ class EmployerController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        Employee::create([
+        Employer::create([
             'name' => $request->name,
             'email' => $request->email,
             'photo' => $request->file('photo')->store('photos', 'public'),
@@ -24,4 +27,25 @@ class EmployerController extends Controller
 
         return Inertia::render('Employee/Dashboard');
     }
+
+
+    public function taskCreation(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'due_date' => 'required|date|after:today',
+        ]);
+
+        Task::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'employer_id' => auth()->user()->id, // Assuming the employer is authenticated
+        ]);
+        return Inertia::render('Employer/Dashboard');
+
+    }
+
+
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Models\Employee;
+use App\Models\Employee;
+use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
@@ -28,6 +29,8 @@ class EmployeeController extends Controller
 
         return Inertia::render('Employee/Dashboard');
     }
+
+    
 
 
 }

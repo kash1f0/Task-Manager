@@ -11,7 +11,7 @@ class Employer extends Model
      *
      * @var string
      */
-    protected $table = 'employer';
+    protected $table = 'employers';
 
     /**
      * The attributes that are mass assignable.
@@ -34,4 +34,9 @@ class Employer extends Model
         'password',
         'remember_token',
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'employer_id');
+    }
 }
