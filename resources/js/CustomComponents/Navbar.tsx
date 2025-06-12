@@ -25,7 +25,7 @@ export default function Navbar({fields, account}) {
                     {
                         fields.map((field, index) => (
                             <li key={index}>
-                                <a href={field.link}>{field.name}</a>
+                                <a href={field.href}>{field.name}</a>
                             </li>
                         ))
                     }

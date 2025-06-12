@@ -4,10 +4,6 @@ import Navbar from '@/CustomComponents/Navbar';
 export default function Create({}) {
     return (
         <div>
-            <div>
-                <Navbar />
-            </div>
-
             <Form
                 method="post"
                 route="/employee/create/submit"

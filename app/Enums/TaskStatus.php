@@ -1,24 +1,11 @@
 <?php
 
-class TaskStatus
+namespace App\Enums;
+enum TaskStatus: string
 {
-    const OPEN = 'open';
-    const PENDING = 'pending';
-    const COMPLETED = 'completed';
-    const CANCELLED = 'cancelled';
-
-    /**
-     * Get all statuses.
-     *
-     * @return array
-     */
-    public static function allStatuses()
-    {
-        return [
-            self::OPEN,
-            self::PENDING,
-            self::COMPLETED,
-            self::CANCELLED,
-        ];
-    }
+    case OPEN = 'open';
+    case PENDING = 'pending';
+    case COMPLETED = 'completed';
+    case CANCELLED = 'cancelled';
+    case IN_PROGRESS = 'in_progress';
 }

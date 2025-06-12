@@ -21,17 +21,16 @@ export default function Form({ method, route, fields }) {
     }
 
     function handleChange(e) {
-        // If the field is a file, we need to handle it differently
         if (e.target.type === 'file') {
             setData((prev) => ({
                 ...prev,
-                [e.target.id]: e.target.files[0], // Store the file object )
+                [e.target.id]: e.target.files[0],
             }));
             return;
         }
         setData((prev) => ({
             ...prev,
-            [e.target.id]: e.target.value, // Store the file object )
+            [e.target.id]: e.target.value,
         }));
     }
 

@@ -25,27 +25,29 @@ class EmployerController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return Inertia::render('Employee/Dashboard');
+        return Inertia::render('Employer/Task');
     }
 
 
-    public function taskCreation(Request $request)
+    public function login(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'due_date' => 'required|date|after:today',
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
         ]);
 
-        Task::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'due_date' => $request->due_date,
-            'employer_id' => auth()->user()->id, // Assuming the employer is authenticated
-        ]);
-        return Inertia::render('Employer/Dashboard');
+        if (auth()->guard('employer')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('employer.task.create');
+        }
 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
+
+
+
 
 
 }

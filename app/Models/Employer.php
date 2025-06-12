@@ -3,8 +3,9 @@
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employer extends Model
+class Employer extends Authenticatable
 {
     /**
      * The table associated with the model.
@@ -12,6 +13,8 @@ class Employer extends Model
      * @var string
      */
     protected $table = 'employers';
+
+    protected $guard = 'employer';
 
     /**
      * The attributes that are mass assignable.

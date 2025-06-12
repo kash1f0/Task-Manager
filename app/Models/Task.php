@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\TaskStatus; // Assuming TaskStatus is an enum or class that defines task statuses
+
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -40,8 +42,8 @@ class Task extends Model
          return $this->belongsTo(Task::class);
      }
 
-     public $casts = [
-         'status' => EmployeeStatus::class, // Assuming EmployeeStatus is an enum or class that defines task statuses
+     protected $casts = [
+         'status' => TaskStatus::class, // Assuming EmployeeStatus is an enum or class that defines task statuses
          'due_date' => 'datetime', // Assuming due_date is a date field
          'created_at' => 'datetime',
          'updated_at' => 'datetime',

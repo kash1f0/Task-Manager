@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskStatus;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Task;
 use Inertia\Inertia;
 
 class EmployeeController extends Controller
@@ -29,6 +31,33 @@ class EmployeeController extends Controller
 
         return Inertia::render('Employee/Dashboard');
     }
+
+        public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        if (auth()->guard('employee')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('employee.dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+
+    public function findTasks(Request $request)
+    {
+        $tasks = Task::where('status', TaskStatus::OPEN)->get();
+        return Inertia::render('Employee/FindTasks', ['tasks' => $tasks]);
+    }
+
+
+    
 
     
 

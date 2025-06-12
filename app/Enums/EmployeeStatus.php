@@ -1,23 +1,12 @@
 <?php
 
-class EmployeeStatus
+namespace App\Enums;
+
+enum EmployeeStatus: string
 {
-    const HIRED = 'hired';
-    const REJECTED = 'rejected';
+    case HIRED = 'hired';
+    case REJECTED = 'rejected';
 
-    const PENDING = 'pending';
+    case PENDING = 'pending';
 
-    /**
-     * Get all statuses.
-     *
-     * @return array
-     */
-    public static function allStatuses()
-    {
-        return [
-            self::HIRED,
-            self::REJECTED,
-            self::PENDING,
-        ];
-    }
 }
