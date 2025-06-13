@@ -33,6 +33,9 @@ Route::get('/employee/dashboard', function () {
 
 Route::get('/employee/findTasks', [EmployeeController::class, 'findTasks'])->name('employee.findTasks');
 
+
+Route::post('/employee/task-apply', [EmployeeController::class, 'taskApply'])->name('employee.taskApply');
+
 Route::get('/employer/create', function () {
     return Inertia::render('Employer/Create');
 })->name('employer.create');

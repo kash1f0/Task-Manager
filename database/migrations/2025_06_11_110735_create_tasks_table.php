@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Enums\TaskStatus; // Assuming you have a TaskStatus enum defined
+use App\Enums\TaskStatus; 
 
 return new class extends Migration
 {
@@ -18,8 +18,10 @@ return new class extends Migration
             $table->text('description');
             $table->date('due_date');
             $table->unsignedBigInteger('employer_id');
+            $table->unsignedBigInteger('employee_id')->nullable(); 
             $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
-            $table->string('status'); // Assuming a status field to track task status
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('set null'); 
+            $table->string('status'); 
             $table->timestamps();
         });
     }

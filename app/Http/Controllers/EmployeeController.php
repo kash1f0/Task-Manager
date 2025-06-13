@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\TaskStatus;
+use App\Enums\EmployeeStatus;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Task;
 use Inertia\Inertia;
+
 
 class EmployeeController extends Controller
 {
@@ -53,7 +55,49 @@ class EmployeeController extends Controller
     public function findTasks(Request $request)
     {
         $tasks = Task::where('status', TaskStatus::OPEN)->get();
+        foreach ($tasks as $task) {
+            $task->href = route('employee.taskApply');
+        }
+        $tasks_new = $tasks->map(function ($task) {
+            if($task->employees()->where('id', auth()->guard('employee')->id())->where('status', EmployeeStatus::PENDING)->exists()) {
+                return null; // Skip tasks that the employee has already applied for
+            }
+            return [
+                'id' => $task->id,
+                'title' => $task->title,
+                'description' => $task->description,
+                'due_date' => $task->due_date,
+                'status' => $task->status,
+                'href' => $task->href,
+            ];
+        });
         return Inertia::render('Employee/FindTasks', ['tasks' => $tasks]);
+    }
+
+
+    public function taskApply(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'task_id' => 'required|exists:tasks,id',
+        ]);
+        
+        $taskId = $request->all();
+        $task_id = $taskId['task_id'];
+        $task = Task::findOrFail($task_id);
+        $employee = auth()->guard('employee')->user();
+
+        if ($task->status !== TaskStatus::OPEN) {
+            return back()->withErrors(['error' => 'This task is not available for application.']);
+        }
+
+
+
+        $task->employees()->attach($employee->id);
+        $task->employees()->updateExistingPivot($employee->id, ['status' => EmployeeStatus::PENDING]);
+        $task->save();
+
+        return redirect()->route('employee.dashboard');
     }
 
 

@@ -42,6 +42,11 @@ class Task extends Model
          return $this->belongsTo(Task::class);
      }
 
+     public function employees()
+     {
+         return $this->belongsToMany(Employee::class);
+     }
+
      protected $casts = [
          'status' => TaskStatus::class, // Assuming EmployeeStatus is an enum or class that defines task statuses
          'due_date' => 'datetime', // Assuming due_date is a date field

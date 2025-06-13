@@ -1,11 +1,12 @@
 import Navbar from '../../CustomComponents/Navbar';
+import Table from '../../CustomComponents/Table';
 
-export default function FindTasks({tasks}) {
+export default function FindTasks({ tasks }) {
     return (
         <>
             <Navbar
                 fields={[
-                    { name: 'Find Job', href: '/employee/findTasks'},
+                    { name: 'Find Job', href: '/employee/findTasks' },
                     { name: 'Completed Jobs', href: '#' },
                     { name: 'Applied Jobs', href: '#' },
                     { name: 'In-Progress Jobs', href: '#' },
@@ -23,6 +24,10 @@ export default function FindTasks({tasks}) {
                         </li>
                     ))}
                 </ul>
+                <Table
+                    tasks={tasks}
+                    headers={['Title', 'Description', 'Due Date', 'Apply']}
+                />
             </div>
         </>
     );

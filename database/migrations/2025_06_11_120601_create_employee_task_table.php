@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\EmployeeStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('task_id');
             $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->string('status'); // Assuming a status field to track task status
+            $table->string('status')->default(EmployeeStatus::PENDING); // Assuming a status field to track task status
             $table->timestamps();
         });
     }
