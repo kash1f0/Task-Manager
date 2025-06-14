@@ -20,7 +20,7 @@ export default function FindTasks({ tasks }) {
                         <li key={index}>
                             <h2>{task.title}</h2>
                             <p>{task.description}</p>
-                            <p>Due Date: {task.due_date}</p>
+                            <p>{task.due_date}</p>
                         </li>
                     ))}
                 </ul>

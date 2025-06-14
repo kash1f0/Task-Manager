@@ -62,11 +62,32 @@ Route::post('/employer/create/submit', [EmployerController::class, 'create'])
 Route::post('/employer/login/submit', [EmployerController::class, 'login'])
     ->name('employer.login.submit');
 
-
 Route::get('/employer/task/create', function () {
     return Inertia::render('Employer/Task');
 })->name('employer.task.create');
 
 
 Route::post('/employer/task/submit', [TaskController::class, 'taskCreation'])
-    ->name('task.submit');
+    ->name('employer.taskSubmit');
+
+
+
+Route::get('/employer/task/list', [EmployerController::class, 'taskList'])
+    ->name('employer.taskList');
+
+
+
+Route::get('/employer/task/appliedList', [EmployerController::class, 'appliedList'])
+    ->name('employer.appliedList');
+
+
+
+Route::get('/employer/task/edit/{id}', [EmployerController::class, 'taskEdit'])->name('employer.taskEdit');
+
+
+
+Route::get('/employer/employeeList/{id}', [EmployerController::class, 'appliedList'])
+    ->name('employer.employeeList');
+
+Route::get('/employer/employeeSelect/{employee_id}/{task_id}', [EmployerController::class, 'employeeSelect'])
+    ->name('employer.taskSelect');

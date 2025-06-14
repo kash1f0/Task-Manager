@@ -3,7 +3,7 @@ import Navbar from '../../CustomComponents/Navbar';
 export default function Task({ children }) {
     return (
         <div>
-            <Navbar fields={[{name: 'Create Job', href: '/employer/task/create'}, {name: 'Completed Jobs', href: '#'}, {name: 'Posted Jobs', href: '#'}, {name: 'In-Progress Jobs', href: '#'}]}  account={{profile: '#', delete: '#'}}/>
+            <Navbar fields={[{name: 'Create Task', href: '/employer/task/create'}, {name: 'Completed Tasks', href: '#'}, {name: 'Posted Tasks', href: '/employer/task/list'}, {name: 'In-Progress Tasks', href: '#'}]}  account={{profile: '#', delete: '#'}}/>
             <Form
                 method="post"
                 route="/employer/task/submit"

@@ -54,24 +54,22 @@ class EmployeeController extends Controller
 
     public function findTasks(Request $request)
     {
+        $tasks = Task::where('status', TaskStatus::OPEN)->with('employees')->get();
+
+        $tasks_new = array();
+
+        foreach($tasks as $task) {
+            if(!$task->employees()->where('employee_id', auth()->guard('employee')->id())->exists()) {
+                array_push($tasks_new, $task);
+            }
+        }
+
         $tasks = Task::where('status', TaskStatus::OPEN)->get();
-        foreach ($tasks as $task) {
+
+        foreach($tasks_new as $task) {
             $task->href = route('employee.taskApply');
         }
-        $tasks_new = $tasks->map(function ($task) {
-            if($task->employees()->where('id', auth()->guard('employee')->id())->where('status', EmployeeStatus::PENDING)->exists()) {
-                return null; // Skip tasks that the employee has already applied for
-            }
-            return [
-                'id' => $task->id,
-                'title' => $task->title,
-                'description' => $task->description,
-                'due_date' => $task->due_date,
-                'status' => $task->status,
-                'href' => $task->href,
-            ];
-        });
-        return Inertia::render('Employee/FindTasks', ['tasks' => $tasks]);
+        return Inertia::render('Employee/FindTasks', ['tasks' => $tasks_new]);
     }
 
 
@@ -97,7 +95,7 @@ class EmployeeController extends Controller
         $task->employees()->updateExistingPivot($employee->id, ['status' => EmployeeStatus::PENDING]);
         $task->save();
 
-        return redirect()->route('employee.dashboard');
+        return redirect()->route('employee.findTasks');
     }
 
 
