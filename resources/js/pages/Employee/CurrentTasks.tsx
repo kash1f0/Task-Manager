@@ -1,18 +1,18 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
 
-export default function AppliedList({ employees }) {
-    const headers = ['Email', 'Select'];
+export default function CurrentTasks({ tasks }) {
+    const headers = ['Title', 'Description', 'Due Date', 'Complete'];
     return (
         <div>
             <Navbar
                 fields={[
-                    { name: 'Create Task', href: '/employer/task/create' },
-                    { name: 'Completed Tasks', href: '/employer/completedTasks' },
-                    { name: 'Posted Tasks', href: '/employer/task/list' },
-                    { name: 'In-Progress Tasks', href: '/employer/currentTasks' },
-                    { name: 'Profile', href: '/employer/profile' },
-                    { name: 'Logout', href: '/employer/logout' },
+                    { name: 'Find Task', href: '/employee/findTasks' },
+                    { name: 'Completed Task', href: '/employee/completedTasks' },
+                    { name: 'Applied Task', href: '/employee/appliedList' },
+                    { name: 'In-Progress Task', href: '/employee/currentList' },
+                    { name: 'Profile', href: '/employee/profile' },
+                    { name: 'Logout', href: '/employee/logout' },
                 ]}
                 
             />
@@ -27,13 +27,15 @@ export default function AppliedList({ employees }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee: any, index: number) => (
+                        {tasks.map((task: any, index: number) => (
                             <tr key={index}>
                                 <th>{index + 2}</th>
-                                <td>{employee.email}</td>
+                                <td>{task.title}</td>
+                                <td>{task.description}</td>
+                                <td>{task.due_date}</td>
                                 <td>
-                                    <Link className="btn btn-outline btn-accent" href={`/employer/employeeSelect/${employee.id}/${employee.task_id}`}>
-                                        Select
+                                    <Link className="btn btn-outline btn-accent" href={`/employee/taskComplete/${task.id}`}>
+                                        Complete
                                     </Link>
                                 </td>
                             </tr>

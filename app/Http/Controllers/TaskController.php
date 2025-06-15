@@ -27,4 +27,27 @@ class TaskController extends Controller {
         return Inertia::render('Employer/Task');
 
     }
+
+    public function taskDelete($id){
+        Task::findOrFail($id)->delete();
+        return redirect()->route('employer.taskList');
+    }
+
+    public function editSubmit(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'string|max:255|nullable',
+            'description' => 'string|max:1000|nullable',
+            'due_date' => 'date|after:today|nullable',
+        ]);
+
+        $task = Task::findOrFail($id);
+        $task->update([
+            'title' => $request->title ?? $task->title,
+            'description' => $request->description ?? $task->description,
+            'due_date' => $request->due_date ?? $task->due_date,
+        ]);
+
+        return redirect()->route('employer.taskList');
+    }
 }

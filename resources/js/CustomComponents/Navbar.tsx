@@ -1,4 +1,4 @@
-export default function Navbar({fields, account}) {
+export default function Navbar({fields}) {
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -30,30 +30,6 @@ export default function Navbar({fields, account}) {
                         ))
                     }
                 </ul>
-            </div>
-            <div className="navbar-end">
-                <div className="flex-none">
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn avatar btn-circle btn-ghost">
-                            <div className="w-10 rounded-full">
-                                <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                                />
-                            </div>
-                        </div>
-                        <ul tabIndex={0} className="dropdown-content menu z-1 mt-3 w-52 menu-sm rounded-box bg-base-100 p-2 shadow">
-                            <li>
-                                <a className="justify-between" href={account.profile}>
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href={account.delete}>Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </div>
     );

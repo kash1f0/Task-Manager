@@ -1,6 +1,10 @@
+import { router } from '@inertiajs/react';
 import Form from '../../CustomComponents/Form';
 import Navbar from '../../CustomComponents/Navbar';
-export default function Task({ children }) {
+export default function Edit({ employer }) {
+    const handleSubmit = (id) => {
+        router.delete(`/employer/delete/${id}`);
+    };
     return (
         <div>
             <Navbar
@@ -15,13 +19,20 @@ export default function Task({ children }) {
             />
             <Form
                 method="post"
-                route="/employer/task/submit"
+                route={`/employer/edit/submit`}
                 fields={[
-                    { name: 'title', type: 'text', label: 'Title: ', placeholder: 'Enter the title' },
-                    { name: 'description', type: 'text', label: 'Description: ', placeholder: 'Enter the description:' },
-                    { name: 'due_date', type: 'date', label: 'Due Date: ', placeholder: 'Select the due date' },
+                    { name: 'name', type: 'text', label: 'Name: ', placeholder: 'Enter your name' },
+                    { name: 'email', type: 'email', label: 'Email: ', placeholder: 'Enter your email' },
                 ]}
             />
+            <button
+                className="btn btn-outline btn-error"
+                onClick={() => {
+                    handleSubmit(employer.id);
+                }}
+            >
+                Delete
+            </button>
         </div>
     );
 }

@@ -1,8 +1,7 @@
-import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
 
-export default function AppliedList({ employees }) {
-    const headers = ['Email', 'Select'];
+export default function CompletedTasks({ tasks }) {
+    const headers = ['Title', 'Description', 'Due Date'];
     return (
         <div>
             <Navbar
@@ -14,7 +13,6 @@ export default function AppliedList({ employees }) {
                     { name: 'Profile', href: '/employer/profile' },
                     { name: 'Logout', href: '/employer/logout' },
                 ]}
-                
             />
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">
@@ -27,15 +25,12 @@ export default function AppliedList({ employees }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee: any, index: number) => (
+                        {tasks.map((task: any, index: number) => (
                             <tr key={index}>
                                 <th>{index + 2}</th>
-                                <td>{employee.email}</td>
-                                <td>
-                                    <Link className="btn btn-outline btn-accent" href={`/employer/employeeSelect/${employee.id}/${employee.task_id}`}>
-                                        Select
-                                    </Link>
-                                </td>
+                                <td>{task.title}</td>
+                                <td>{task.description}</td>
+                                <td>{task.due_date}</td>
                             </tr>
                         ))}
                     </tbody>

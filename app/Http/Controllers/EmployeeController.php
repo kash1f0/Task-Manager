@@ -99,6 +99,116 @@ class EmployeeController extends Controller
     }
 
 
+    public function appliedList()
+    {
+        $employee_id = auth()->guard('employee')->id();
+        $employee = Employee::findOrFail($employee_id);
+        $tasks = $employee->tasks()->wherePivot('status', EmployeeStatus::PENDING)->get();
+        // dd($tasks);
+
+        return Inertia::render('Employee/AppliedTasks', [
+            'tasks' => $tasks,
+        ]);
+    }
+
+    public function taskCancel($id){
+        $task = Task::findOrFail($id);
+        $employee_id = auth()->guard('employee')->id();
+        
+        $task->employees()->detach($employee_id);
+
+        return redirect()->route('employee.appliedList');
+    }
+
+
+    public function currentList()
+    {
+        $employee_id = auth()->guard('employee')->id();
+        $tasks = Task::where('status', TaskStatus::PENDING)->where('employee_id', $employee_id)->get();
+
+        return Inertia::render('Employee/CurrentTasks', [
+            'tasks' => $tasks,
+        ]);
+    }
+
+
+    public function taskComplete($id)
+    {
+        $task = Task::findOrFail($id);
+        $employee_id = auth()->guard('employee')->id();
+        $task->status = TaskStatus::COMPLETED;
+        $task->save();
+
+        return redirect()->route('employee.currentList');
+    }
+
+    public function completedTasks(){
+        $employee_id = auth()->guard('employee')->id();
+        $tasks = Task::where('status', TaskStatus::COMPLETED)->where('employee_id', $employee_id)->get();
+
+        return Inertia::render('Employee/CompletedTasks', [
+            'tasks' => $tasks,
+        ]);
+    }
+
+
+    public function profile(){
+        $employee = Employee::findOrFail(auth()->guard('employee')->id())->get();
+
+        return Inertia::render('Employee/Profile', [
+            'employee' => $employee,
+        ]);
+    }
+
+
+    public function edit($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return Inertia::render('Employee/Edit', [
+            'employee' => $employee,
+        ]);
+    }
+
+    public function submitEdit(Request $request)
+    {
+        $id = auth()->guard('employee')->id();
+        $request->validate([
+            'name' => 'string|max:255|nullable',
+            'email' => 'email|max:255|unique:employees|nullable',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,pdf,svg|max:2048|nullable',
+            'aboutEmployee' => 'string|max:500|nullable',
+        ]);
+
+        $employee = Employee::findOrFail($id)->first();
+        $employee->update([
+            'name' => $request->name ?? $employee->name,
+            'email' => $request->email ?? $employee->email,
+            'aboutEmployee' => $request->aboutEmployee ?? $employee->aboutEmployee,
+            'photo' => $employee->photo,
+        ]);
+
+        return redirect()->route('employee.profile');
+    }
+
+
+    public function employeeDelete($id)
+    {
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        return redirect()->route('employee.login');
+    }
+
+
+    public function logout(Request $request)
+    {
+        auth()->guard('employee')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('employee.login');
+    }
+    
+
+
     
 
     

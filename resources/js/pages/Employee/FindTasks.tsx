@@ -6,15 +6,16 @@ export default function FindTasks({ tasks }) {
         <>
             <Navbar
                 fields={[
-                    { name: 'Find Job', href: '/employee/findTasks' },
-                    { name: 'Completed Jobs', href: '#' },
-                    { name: 'Applied Jobs', href: '#' },
-                    { name: 'In-Progress Jobs', href: '#' },
+                    { name: 'Find Task', href: '/employee/findTasks' },
+                    { name: 'Completed Task', href: '/employee/completedTasks' },
+                    { name: 'Applied Task', href: '/employee/appliedList' },
+                    { name: 'In-Progress Task', href: '/employee/currentList' },
+                    { name: 'Profile', href: '/employee/profile' },
+                    { name: 'Logout', href: '/employee/logout' },
                 ]}
-                account={{ profile: '#', delete: '#' }}
+                
             />
             <div>
-                <h1>Find Jobs</h1>
                 <ul>
                     {tasks.map((task, index) => (
                         <li key={index}>

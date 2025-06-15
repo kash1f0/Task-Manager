@@ -1,8 +1,8 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
 
-export default function AppliedList({ employees }) {
-    const headers = ['Email', 'Select'];
+export default function Profile({ employer }) {
+    const headers = ['Name', 'Email', 'Edit', 'Delete'];
     return (
         <div>
             <Navbar
@@ -14,7 +14,6 @@ export default function AppliedList({ employees }) {
                     { name: 'Profile', href: '/employer/profile' },
                     { name: 'Logout', href: '/employer/logout' },
                 ]}
-                
             />
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">
@@ -27,13 +26,19 @@ export default function AppliedList({ employees }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee: any, index: number) => (
+                        {employer.map((employer: any, index: number) => (
                             <tr key={index}>
                                 <th>{index + 2}</th>
-                                <td>{employee.email}</td>
+                                <td>{employer.name}</td>
+                                <td>{employer.email}</td>
                                 <td>
-                                    <Link className="btn btn-outline btn-accent" href={`/employer/employeeSelect/${employee.id}/${employee.task_id}`}>
-                                        Select
+                                    <Link className="btn btn-outline btn-accent" href={`/employer/edit/${employer.id}`}>
+                                        Edit
+                                    </Link>
+                                </td>
+                                <td>
+                                    <Link className="btn btn-outline btn-accent" href={`/employer/delete/${employer.id}`}>
+                                        Delete
                                     </Link>
                                 </td>
                             </tr>
