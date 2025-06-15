@@ -75,6 +75,9 @@ Route::middleware(['auth:employee'])->group(function () {
     Route::get('/employee/logout', [EmployeeController::class, 'logout'])
         ->name('employee.logout');
 
+    
+    Route::get('/employee/profile', [EmployeeController::class, 'profile'])->name('employee.profile');
+
 });
 
 ///////////////////Employer Routes////////////////////

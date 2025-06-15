@@ -2,9 +2,7 @@ import { router } from '@inertiajs/react';
 import Form from '../../CustomComponents/Form';
 import Navbar from '../../CustomComponents/Navbar';
 export default function Edit({ employer }) {
-    const handleSubmit = (id) => {
-        router.delete(`/employer/delete/${id}`);
-    };
+    
     return (
         <div>
             <Navbar
@@ -25,14 +23,7 @@ export default function Edit({ employer }) {
                     { name: 'email', type: 'email', label: 'Email: ', placeholder: 'Enter your email' },
                 ]}
             />
-            <button
-                className="btn btn-outline btn-error"
-                onClick={() => {
-                    handleSubmit(employer.id);
-                }}
-            >
-                Delete
-            </button>
+            
         </div>
     );
 }

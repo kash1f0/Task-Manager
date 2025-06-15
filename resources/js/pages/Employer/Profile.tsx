@@ -1,7 +1,10 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
-
+import { router } from '@inertiajs/react';
 export default function Profile({ employer }) {
+    const handleSubmit = (id) => {
+        router.delete(`/employer/delete/${id}`);
+    };
     const headers = ['Name', 'Email', 'Edit', 'Delete'];
     return (
         <div>
@@ -36,11 +39,14 @@ export default function Profile({ employer }) {
                                         Edit
                                     </Link>
                                 </td>
-                                <td>
-                                    <Link className="btn btn-outline btn-accent" href={`/employer/delete/${employer.id}`}>
-                                        Delete
-                                    </Link>
-                                </td>
+                                <button
+                                    className="btn btn-outline btn-error"
+                                    onClick={() => {
+                                        handleSubmit(employer.id);
+                                    }}
+                                >
+                                    Delete
+                                </button>
                             </tr>
                         ))}
                     </tbody>
