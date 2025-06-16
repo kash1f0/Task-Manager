@@ -1,6 +1,6 @@
 import { router, useForm } from '@inertiajs/react';
 
-export default function Form({ method, route, fields }) {
+export default function Form({ method, route, fields, buttonVal }) {
     const { data, setData, errors, post, get } = useForm(
         fields.reduce(
             (acc, field) => ({
@@ -35,8 +35,8 @@ export default function Form({ method, route, fields }) {
     }
 
     return (
-        <form className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4" onSubmit={handleSubmit}>
-            <legend className="fieldset-legend">Login</legend>
+        <form className="fieldset bg-base-200 border-base-300 rounded-box w-xl border p-4 m-4" onSubmit={handleSubmit}>
+            <legend className="fieldset-legend">{buttonVal}</legend>
 
             {fields.map((field) =>
                 field.type === 'file' ? (
@@ -62,7 +62,7 @@ export default function Form({ method, route, fields }) {
             )}
 
             <button className="btn btn-neutral mt-4" type="submit">
-                Login
+                {buttonVal}
             </button>
         </form>
     );

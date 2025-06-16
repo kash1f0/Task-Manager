@@ -14,7 +14,6 @@ export default function CurrentTasks({ tasks }) {
                     { name: 'Profile', href: '/employee/profile' },
                     { name: 'Logout', href: '/employee/logout' },
                 ]}
-                
             />
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">

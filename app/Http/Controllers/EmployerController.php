@@ -132,7 +132,7 @@ class EmployerController extends Controller
     {
         $employer = Employer::findOrFail(auth()->guard('employer')->id())->get();
         // dd($employer);
-        return Inertia::render('Employer/Profile', [
+        return Inertia::render('Employer/Edit', [
             'employer' => $employer,
         ]);
     }

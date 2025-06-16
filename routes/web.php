@@ -128,10 +128,6 @@ Route::middleware(['auth:employer'])->group(function () {
 
     Route::get('/employer/profile', [EmployerController::class, 'profile'])->name('employer.profile');
 
-    // Route::get('/employer/task/appliedList/{id}', [EmployerController::class, 'appliedList'])
-//     ->name('employer.task.appliedList');
-
-
 
     Route::get('/employer/task/appliedList', [EmployerController::class, 'appliedList'])
         ->name('employer.appliedList');

@@ -1,8 +1,8 @@
-import { router } from '@inertiajs/react';
 import Form from '../../CustomComponents/Form';
+import Layout from '../../CustomComponents/Layout';
 import Navbar from '../../CustomComponents/Navbar';
+
 export default function Edit({ employer }) {
-    
     return (
         <div>
             <Navbar
@@ -15,15 +15,17 @@ export default function Edit({ employer }) {
                     { name: 'Logout', href: '/employer/logout' },
                 ]}
             />
-            <Form
-                method="post"
-                route={`/employer/edit/submit`}
-                fields={[
-                    { name: 'name', type: 'text', label: 'Name: ', placeholder: 'Enter your name' },
-                    { name: 'email', type: 'email', label: 'Email: ', placeholder: 'Enter your email' },
-                ]}
-            />
-            
+            <Layout>
+                <Form
+                    method="post"
+                    route={`/employer/edit/submit`}
+                    fields={[
+                        { name: 'name', type: 'text', label: 'Name: ', placeholder: 'Enter your name' },
+                        { name: 'email', type: 'email', label: 'Email: ', placeholder: 'Enter your email' },
+                    ]}
+                    buttonVal="Edit Employer"
+                />
+            </Layout>
         </div>
     );
 }

@@ -155,7 +155,7 @@ class EmployeeController extends Controller
     public function profile(){
         $employee = Employee::findOrFail(auth()->guard('employee')->id())->get();
 
-        return Inertia::render('Employee/Profile', [
+        return Inertia::render('Employee/Edit', [
             'employee' => $employee,
         ]);
     }

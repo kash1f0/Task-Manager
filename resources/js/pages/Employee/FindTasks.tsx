@@ -16,15 +16,6 @@ export default function FindTasks({ tasks }) {
                 
             />
             <div>
-                <ul>
-                    {tasks.map((task, index) => (
-                        <li key={index}>
-                            <h2>{task.title}</h2>
-                            <p>{task.description}</p>
-                            <p>{task.due_date}</p>
-                        </li>
-                    ))}
-                </ul>
                 <Table
                     tasks={tasks}
                     headers={['Title', 'Description', 'Due Date', 'Apply']}
