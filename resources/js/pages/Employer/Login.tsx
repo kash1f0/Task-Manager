@@ -4,7 +4,7 @@ import Layout from '../../CustomComponents/Layout';
 export default function Login({}) {
     return (
         <div>
-            <h1>Login Employer</h1>
+            <h1 className='text-center bold p-2 m-2'>Login Employer: </h1>
             <Layout>
                 <Form
                     method="post"

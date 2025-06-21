@@ -4,8 +4,7 @@ import Layout from '../../CustomComponents/Layout';
 export default function Create({}) {
     return (
         <div>
-            <h1>Create Employer</h1>
-            <p>This is the create employer page.</p>
+            <h1 className="bold m-2 p-2 text-center">Create Employer: </h1>
             <Layout>
                 <Form
                     method="post"

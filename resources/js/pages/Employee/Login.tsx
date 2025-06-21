@@ -3,7 +3,7 @@ import Layout from '../../CustomComponents/Layout';
 export default function Login({}) {
     return (
         <div>
-            <h1 className="text-center">Login Employee</h1>
+            <h1 className="bold m-2 p-2 text-center">Login Employee: </h1>
             <Layout>
                 <Form
                     method="post"

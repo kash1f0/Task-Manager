@@ -27,6 +27,11 @@ class EmployerController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        auth()->guard('employer')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        $request->session()->regenerate();
         return Inertia::render('Employer/Task');
     }
 

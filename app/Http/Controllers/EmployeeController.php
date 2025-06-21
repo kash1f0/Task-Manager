@@ -30,7 +30,11 @@ class EmployeeController extends Controller
             'photo' => $path,
             'password' => bcrypt($request->password),
         ]);
-
+        auth()->guard('employee')->attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        $request->session()->regenerate();
         return Inertia::render('Employee/Dashboard');
     }
 

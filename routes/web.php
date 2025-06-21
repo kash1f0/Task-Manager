@@ -7,7 +7,7 @@ use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\TaskController;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return Inertia::render('Landing');
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
