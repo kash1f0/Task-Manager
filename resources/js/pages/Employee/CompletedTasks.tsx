@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
-
+import DateFormatter from '@/CustomComponents/DateFormatter';
 export default function CompletedTasks({ tasks }) {
     const headers = ['Title', 'Description', 'Due Date'];
     return (
@@ -32,7 +32,7 @@ export default function CompletedTasks({ tasks }) {
                                 <th>{index + 2}</th>
                                 <td>{task.title}</td>
                                 <td>{task.description}</td>
-                                <td>{task.due_date}</td>
+                                <td><DateFormatter date={task.due_date} /></td>
                             </tr>
                         ))}
                     </tbody>

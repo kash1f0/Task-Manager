@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
+import DateFormatter from '@/CustomComponents/DateFormatter';
 
 export default function TaskList({ tasks }) {
     const headers = ['Title', 'Description', 'Due Date', 'Cancel'];
@@ -32,7 +33,7 @@ export default function TaskList({ tasks }) {
                                 <th>{index + 2}</th>
                                 <td>{task.title}</td>
                                 <td>{task.description}</td>
-                                <td>{task.due_date}</td>
+                                <td><DateFormatter date={task.due_date} /></td>
                                 <td>
                                     <Link className="btn btn-outline btn-accent" href={`/employee/taskCancel/${task.id}`}>
                                         Cancel

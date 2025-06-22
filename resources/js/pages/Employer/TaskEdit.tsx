@@ -30,14 +30,14 @@ export default function TaskEdit({ children, task }) {
                     buttonVal="Edit Task"
                 />
             </Layout>
-            <button
+            {/* <button
                 className="btn btn-outline btn-error"
                 onClick={() => {
                     handleSubmit(task.id);
                 }}
             >
                 Delete Task
-            </button>
+            </button> */}
         </div>
     );
 }

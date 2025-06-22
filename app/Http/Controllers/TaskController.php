@@ -24,7 +24,7 @@ class TaskController extends Controller {
             'status' => TaskStatus::OPEN, // Assuming a default status for new tasks
             'employer_id' => auth()->guard('employer')->id(), // Assuming the employer is authenticated
         ]);
-        return Inertia::render('Employer/Task');
+        return redirect()->route('employer.taskList');
 
     }
 

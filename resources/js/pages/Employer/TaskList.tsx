@@ -1,6 +1,7 @@
 // import {router} from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 import Navbar from '../../CustomComponents/Navbar';
+import DateFormatter from '@/CustomComponents/DateFormatter';
 interface Task {
     id: number;
     title: string;
@@ -43,7 +44,7 @@ export default function TaskList({ tasks }: TaskListProps) {
                                 <th>{index + 2}</th>
                                 <td>{task.title}</td>
                                 <td>{task.description}</td>
-                                <td>{task.due_date}</td>
+                                <td> <DateFormatter date={task.due_date} /> </td>
                                 <td>
                                     <Link className="btn btn-outline btn-accent" href={`/employer/employeeList/${task.id}`}>
                                         See

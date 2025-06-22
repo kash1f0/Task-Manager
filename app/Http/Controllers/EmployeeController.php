@@ -47,7 +47,7 @@ class EmployeeController extends Controller
 
         if (auth()->guard('employee')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('employee.dashboard');
+            return redirect()->route('employee.findTasks');
         }
 
         return back()->withErrors([
