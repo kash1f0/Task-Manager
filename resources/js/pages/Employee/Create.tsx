@@ -3,7 +3,6 @@ import Layout from '../../CustomComponents/Layout';
 export default function Create({}) {
     return (
         <Layout>
-            <h1 className="bold m-2 p-2 text-center">Create Employee: </h1>
             <div>
                 <Form
                     method="post"

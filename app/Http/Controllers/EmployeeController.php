@@ -35,7 +35,7 @@ class EmployeeController extends Controller
             'password' => $request->password,
         ]);
         $request->session()->regenerate();
-        return Inertia::render('Employee/Dashboard');
+        return Inertia::render('Employee/FindTasks');
     }
 
         public function login(Request $request)

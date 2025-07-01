@@ -10,7 +10,7 @@ export default function Edit({ employee }) {
                     { name: 'Completed Task', href: '/employee/completedTasks' },
                     { name: 'Applied Task', href: '/employee/appliedList' },
                     { name: 'In-Progress Task', href: '/employee/currentList' },
-                    { name: 'Profile', href: '/employee/profile' },
+                    { name: 'Edit Profile', href: '/employee/profile' },
                     { name: 'Logout', href: '/employee/logout' },
                 ]}
             />

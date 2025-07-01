@@ -44,7 +44,7 @@ export default function Form({ method, route, fields, buttonVal }) {
                         <div className="m-2 p-2 ml-0 pl-0">
                             <label className="label text-lg">{field.label}</label>
                         </div>
-                        <input type={field.type} className="input" name={field.name} onChange={handleChange} id={field.name} />
+                        <input type={field.type} className="input w-full" name={field.name} onChange={handleChange} id={field.name} />
                         {errors[field.name] && <span className="text-error">{errors[field.name]}</span>}
                     </div>
                 ) : (
@@ -55,7 +55,7 @@ export default function Form({ method, route, fields, buttonVal }) {
                         <input
                             type={field.type}
                             name={field.name}
-                            className="input"
+                            className="input w-full"
                             placeholder={field.placeholder}
                             id={field.name}
                             onChange={handleChange}

@@ -11,7 +11,7 @@ export default function CompletedTasks({ tasks }) {
                     { name: 'Completed Tasks', href: '/employer/completedTasks' },
                     { name: 'Posted Tasks', href: '/employer/task/list' },
                     { name: 'In-Progress Tasks', href: '/employer/currentTasks' },
-                    { name: 'Profile', href: '/employer/profile' },
+                    { name: 'Edit Profile', href: '/employer/profile' },
                     { name: 'Logout', href: '/employer/logout' },
                 ]}
             />
